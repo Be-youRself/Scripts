@@ -8,6 +8,9 @@ import time
 # 从文件读取饰品信息并存入列表
 searchList = []
 file_r = open("want.txt")
+# 打开文件的字符编码要与文件记录相同 否则出现乱码不能正确读取
+# 默认参数打开ANSI的txt文件
+# 若读取UTF-8 文件中首行开头会有特殊转义字符 需要另外处理
 while True:
     line = file_r.readline()
     if len(line) == 0:
