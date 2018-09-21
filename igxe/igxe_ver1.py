@@ -17,14 +17,16 @@ ref_1 = 'title="' + search + '"'
 ind_1 = igxe_source.find(ref_1)
 
 # 定位到价格区域
-ref_2 = '<div class="price">卖家售价：<span class="c-4">'
+ref_2 = '''<div class="price fl"><sup>￥</sup>
+                                                    <span>'''
 ind_2 = igxe_source.find(ref_2, ind_1)
 
-ref_3 = '</span></div>'
-ind_3 = igxe_source.find(ref_3, ind_2)
+ref_3 = '''</span>
+                                                    <sub>'''
+ind_3 = igxe_source.find(ref_3, ind_2, ind_2 + 300)
 
 # 获取价格
-price = igxe_source[ind_2 + len(ref_2): ind_3]
+price = "￥" + igxe_source[ind_2 + len(ref_2): ind_3] + igxe_source[ind_3 + len(ref_3): ind_3 + len(ref_3) + 2]
 
 #存储到文件
 file_w = open("igxe.txt", "a", encoding="utf-8")

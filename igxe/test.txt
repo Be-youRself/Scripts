@@ -1,3 +1,23 @@
-﻿https://www.igxe.cn/csgo/730?is_buying=0&is_stattrak%5B%5D=0&is_stattrak%5B%5D=0&keyword=——（search）——&sort=0&ctg_id=0&type_id=0&page_no=——（页码）——&page_size=20&rarity_id=0&exterior_id=0&quality_id=0&capsule_id=0
+﻿网站相关检索域名：
+https://www.igxe.cn/csgo/730?is_buying=0&is_stattrak%5B%5D=0&is_stattrak%5B%5D=0&keyword=——（search）——&sort=0&ctg_id=0&type_id=0&page_no=——（页码）——&page_size=20&rarity_id=0&exterior_id=0&quality_id=0&capsule_id=0
 
-<!--没有数据-->最后一页
+
+检索条件：
+检索物品价格
+2018.9.19
+定位物品位置：ref_1 = 'title="' + search + '"'
+定位价格开始位置：ref_2 = '<div class="price">卖家售价：<span class="c-4">'
+定位价格结束位置：ref_3 = '</span></div>'
+price = igxe_source[ind_2 + len(ref_2): ind_3]
+
+2018.9.21
+igxe.cn网站更新，定位价格位置发生改变，更改后：
+定位价格开始位置：ref_2 = '''<div class="price fl"><sup>￥</sup>
+                                                    <span>'''
+定位价格结束位置：ref_3 = '''</span>
+                                                    <sub>'''
+允许查找区间：300
+price = "￥" + igxe_source[ind_2 + len(ref_2): ind_3] + igxe_source[ind_3 + len(ref_3): ind_3 + len(ref_3) + 2] //最后一项是小数数位 位数固定为2
+
+检索最后一页
+<!--没有数据-->

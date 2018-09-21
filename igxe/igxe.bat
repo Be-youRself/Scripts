@@ -1,1 +1,2 @@
-python igxe_ver2.py
+python igxe_ver3.py
+igxe.txt
