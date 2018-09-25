@@ -11,10 +11,12 @@
 # 统一字符格式通过将字符串转换成“GBK”格式的字节来计算其宽度
 # 即len(bytes(a, encoding="GBK"))
 # 或len(list(a.encode("GBK")))
+# 进行无网络连接时候卡死的异常处理
 
 import requests
 import time
 import os
+import sys
 
 # 从文件读取饰品信息并存入列表
 searchList = []
@@ -87,7 +89,12 @@ for i in range(0, len(searchList)):
         # 从网页源代码获取信息
         # 获取网页源代码
         igxe_website = "https://www.igxe.cn/csgo/730?is_buying=0&is_stattrak%5B%5D=0&is_stattrak%5B%5D=0&keyword=" + search + "&sort=0&ctg_id=0&type_id=0&page_no=" + str(page) + "&page_size=20&rarity_id=0&exterior_id=0&quality_id=0&capsule_id=0"
-        igxe = requests.get(igxe_website)
+        # 对于网络未连接进行异常处理
+        try:
+            igxe = requests.get(igxe_website)
+        except Exception:
+            file_w.write("网络出现错误，连接失败！脚本已退出！\n\n\n\n")
+            sys.exit()
         igxe_source = str(igxe.content, encoding = "utf-8") 
 
         # 处理所得字符串
