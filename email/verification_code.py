@@ -6,6 +6,7 @@ import random
 import sys
 
 username_recv = input("请输入获取验证码的邮箱：")
+print("正在发送验证码...")
 title = "您的验证信息"
 veri_code = ""
 for i in range(0, 6):
