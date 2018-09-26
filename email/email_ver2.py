@@ -4,6 +4,7 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import base64
 
 mailserver = "smtp.exmail.qq.com"
 username_send = "robot@jsyzqxy.cn"
@@ -22,6 +23,8 @@ filename = input("Enter the filename you want to send: ")
 try:
     att = MIMEText(open(filename, 'rb').read(), "base64", "utf-8")
     att["Content-Type"] = "application/octet-stream"
+    # 处理中文文件名
+    filename = '=?utf-8?b?' + base64.b64encode(filename.encode()).decode() + '?='
     att["Content-Disposition"] = "attachment; filename = %s"%filename
     mail.attach(att)
 except FileNotFoundError as e:
