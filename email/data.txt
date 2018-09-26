@@ -3,6 +3,3 @@
 imap.exmail.qq.com(使用SSL，端口号993)
 发送服务器：
 smtp.exmail.qq.com(使用SSL，端口号465)
-
-robot@jsyzqxy.cn 授权码： euxNgCrNvswVPSTz 密码： Test001
-
