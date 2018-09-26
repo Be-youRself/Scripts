@@ -1,5 +1,6 @@
 # Filename: verification_code.py
 # 一个简单的验证码校验系统来应用 qemail.py
+# 未进行异常处理以及循环发送等
 
 import qemail
 import random
