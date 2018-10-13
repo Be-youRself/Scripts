@@ -10,7 +10,7 @@ mailserver = "smtp.exmail.qq.com" # 服务器地址
 # 发送方
 username_send = "robot@jsyzqxy.cn"
 print("You are trying to use the account %s to send an email."%username_send)
-password = input("Enter the password: ")# 第三方登录使用授权码
+password = input("Enter the password: ") # 第三方登录使用授权码
 # 接收方
 username_recv = ["qxy@jsyzqxy.cn"]
 # 邮件

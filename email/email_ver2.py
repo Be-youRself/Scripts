@@ -9,7 +9,7 @@ import base64
 mailserver = "smtp.exmail.qq.com"
 username_send = "robot@jsyzqxy.cn"
 print("You are trying to use the account %s to send an email."%username_send)
-password = input("Enter the password: ")# 第三方登录使用授权码
+password = input("Enter the password: ") # 第三方登录使用授权码
 username_recv = ["qxy@jsyzqxy.cn"]
 
 mailcontent = "这是个测试邮件，不用回复！"
