@@ -45,7 +45,7 @@ You will get four different status codes after calling this function:
         # 对于数据类型进行统一预处理
         # 对于变量类型、邮箱格式是否合法进行验证以及处理
         # 将 file、 username_recv 转换成 list 型
-        charge_mail = re.compile(r"\w+@\w+\.[a-zA-Z]+") # 邮箱匹配 regex
+        charge_mail = re.compile(r"\w+@\w+\.\w+") # 邮箱匹配 regex
         ## username_recv
         if not isinstance(self.username_recv, list):
             self.username_recv = str(self.username_recv)
