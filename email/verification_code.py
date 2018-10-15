@@ -16,12 +16,14 @@ content = "您正在进行验证，如果不是本人操作，请勿理睬！\n\
 您的验证码是： %s (请不要告诉任何人)"%veri_code
 mail = qemail.SendMail(username_recv = username_recv, 
     mailtitle = title, mailcontent = content)
-mail.send_mail()
-print("验证码已发送至 %s"%username_recv)
-if veri_code == input("请输入验证码："):
-    print("验证成功！")
+if mail.send_mail() == 0:
+    print("验证码已发送至 %s"%username_recv)
+    if veri_code == input("请输入验证码："):
+        print("验证成功！")
+    else:
+        print("验证失败！")
 else:
-    print("验证失败！")
+    print("发送邮件出错！")
 while(input("输入q退出：") != "q"):
     pass
 sys.exit()
