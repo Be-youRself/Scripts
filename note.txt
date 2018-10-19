@@ -1,0 +1,46 @@
+0.标识符命名远离关键字！！！
+
+1.自然字符串 r/R前缀指定 （可以用于处理正则表达式 省去许多反斜杠来转义）
+  关于自然字符串 串末尾最后一个字符不能是反斜杠 处理windows文件路径时候要注意
+  Unicode字符串 u/U前缀指定 P32
+
+2.python 没有 ++ 与 --  相同值变量指向存储中同一个位置
+
+3.python 中的 与或非 是 and or not
+
+4.缩进要注意空格和tab不能混合使用
+
+5.异常中 try块中遇到异常 则跳到相应except块中执行异常处理代码 
+  try块异常语句以后的代码均不执行 正确捕捉处理异常以后 
+  except块之后的代码会正常执行 finally则是都会执行 
+  一般顺序为try-except-else-finally
+
+6.windows下计算字符所占用字节宽度通过将字符串转换成“GBK”格式的字节来计算
+  即len(bytes(a, encoding="GBK")) 或 len(list(a.encode("GBK")))
+
+7.pyqt5界面转换 使用 qt creator 绘画界面
+  使用命令 pyuic5 -o 文件名.py 文件名.ui 将ui文件转换成py文件
+  再单独创建py文件编写逻辑
+
+8.创建对象或者调用函数输入实参时候 如果是以赋值形式 如a(b = 0) 
+  那么实参使用的变量名必须和形参变量名相同
+
+9.正则表达式中 re.split() 对于 pattern 进行匹配分隔时候
+  如果 pattern 中包含圆括号 则把分隔符也作为子串加入列表
+  如：
+    >>>re.split('(\W+)', ' runoob, runoob, runoob.')
+    ['', ' ', 'runoob', ', ', 'runoob', ', ', 'runoob', '.', '']
+    >>>re.split('\W+', ' runoob, runoob, runoob.')
+    ['', 'runoob', 'runoob', 'runoob', '']
+
+10.正则表达式:
+    >>> re.findall('(\W)+', ' runoob, runoob, runoob.')
+    [' ', ' ', ' ', '.']
+    >>> re.findall('(\W+)+', ' runoob, runoob, runoob.')
+    [' ', ', ', ', ', '.']
+  原因：
+    引号作为查找依据 若有括号 返回只有括号里的值 为匹配时扫描到的的最后一位
+
+11.调用同一个类中另一个方法: self.[name]([parameter])
+
+12.“<<” 优先级低于 “+”
