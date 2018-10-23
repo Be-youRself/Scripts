@@ -15,14 +15,15 @@ def recv_error_probability():
     
 # 协议介绍
 print('''简单数据链路层协议说明：
-      1、将传输数据按每四个字节分割成一帧
-      2、采用滑动窗口协议 窗口大小为四 即一次最多传输四帧
-      3、帧分为数据帧与控制帧
-      4、数据帧由序号字段-信息字段-校验字段组成
+      1.将传输数据按每四个字节分割成一帧
+      2.采用滑动窗口协议 窗口大小为四 即一次最多传输四帧
+      3.帧分为数据帧与控制帧
+      4.数据帧由序号字段-信息字段-校验字段组成
       5.采用余数校验方式 生成多项式采用 100000000
       6.传输过程 帧用十六进制显示
       7.出现错误帧后采用选择重发(SR)方式重发
       8.出现错误帧的概率为 5%
+      9.窗口序号为 0 ~ 7 循环
       ''')
 
 # 获取要传输文件数据
@@ -71,7 +72,7 @@ for i in range(0, send_index, 4):
         times_frame = 4
     for j_send in range(0, times_frame):
         # 输出发送数据
-        send_str = "{0} {1} {2}".format(hex(i + j_send + 1), hex(send_message[i + j_send]), hex(send_check[i + j_send]))
+        send_str = "{0} {1} {2}".format(hex((i + j_send) % 8), hex(send_message[i + j_send]), hex(send_check[i + j_send]))
         print(send_str)
     # 接收数据
     buff_bytes = [-1, -1, -1, -1] # 设置缓存 记录接收成功的帧序号
@@ -85,16 +86,16 @@ for i in range(0, send_index, 4):
         if generate_check(data, check_mul) == send_check[i + j_recv]:
             # 存入缓存
             buff_bytes[j_recv] = i + j_recv
-            print(show_indent + "ACK {}".format(hex(i + j_recv + 1)))
+            print(show_indent + "ACK {}".format(hex((i + j_recv) % 8)))
         else:
             resend_list.append(i + j_recv)
-            print(show_indent + "NAK {}".format(hex(i + j_recv + 1)))
+            print(show_indent + "NAK {}".format(hex((i + j_recv) % 8)))
 
     # 对于出错帧采用SR重发
     while resend_list != [] :
         for k in resend_list:
             # 输出发送数据
-            send_str = "{0} {1} {2}".format(hex(k + 1), hex(send_message[k]), hex(send_check[k]))
+            send_str = "{0} {1} {2}".format(hex(k % 8), hex(send_message[k]), hex(send_check[k]))
             print(send_str)
             if random.random() < recv_error_probability(): # 出错概率为 5%
                 data = send_message[k] + 1
@@ -103,9 +104,9 @@ for i in range(0, send_index, 4):
             if generate_check(data, check_mul) == send_check[k]:
                 buff_bytes[k - i] = k
                 resend_list.remove(k)
-                print(show_indent + "ACK {}".format(hex(k + 1)))
+                print(show_indent + "ACK {}".format(hex(k % 8)))
             else:
-                print(show_indent + "NAK {}".format(hex(k + 1)))
+                print(show_indent + "NAK {}".format(hex(k % 8)))
     # 等到所有帧正确后存储缓存中的数据
     for frame_index in buff_bytes: # frame_index 是缓存中的帧序号
         if frame_index != -1:
