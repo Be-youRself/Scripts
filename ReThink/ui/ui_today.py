@@ -17,6 +17,9 @@ class Ui_Today(object):
         self.Note = QtWidgets.QLabel(self.centralwidget)
         self.Note.setGeometry(QtCore.QRect(90, 40, 211, 61))
         self.Note.setObjectName("Note")
+        self.Back = QtWidgets.QPushButton(self.centralwidget)
+        self.Back.setGeometry(QtCore.QRect(630, 520, 93, 28))
+        self.Back.setObjectName("Back")
         Today.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Today)
@@ -26,4 +29,5 @@ class Ui_Today(object):
         _translate = QtCore.QCoreApplication.translate
         Today.setWindowTitle(_translate("Today", "ReThink"))
         self.Note.setText(_translate("Today", "记录今日"))
+        self.Back.setText(_translate("Today", "Back"))
 
