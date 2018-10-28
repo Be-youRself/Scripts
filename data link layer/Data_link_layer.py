@@ -1,4 +1,5 @@
-# Data_link_layer.py
+# Filename: Data_link_layer.py
+# Coding: utf8
 
 import math
 import random
