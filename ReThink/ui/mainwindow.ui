@@ -65,14 +65,14 @@
     <property name="geometry">
      <rect>
       <x>65</x>
-      <y>275</y>
+      <y>255</y>
       <width>220</width>
       <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 40pt &quot;华文隶书&quot;;
-background-image: none;</string>
+background: transparent;</string>
     </property>
     <property name="text">
      <string>ReThink</string>
@@ -81,10 +81,10 @@ background-image: none;</string>
    <widget class="QLabel" name="Logo">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>70</x>
       <y>40</y>
-      <width>190</width>
-      <height>190</height>
+      <width>230</width>
+      <height>210</height>
      </rect>
     </property>
     <property name="text">

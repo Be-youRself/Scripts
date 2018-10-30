@@ -9,16 +9,14 @@ class Ui_Menu_sub(QtWidgets.QMainWindow, Ui_Menu): # 多态继承界面类来添
         super(Ui_Menu_sub, self).__init__(parent = parent)
         self.setupUi(self)
         self.setWindowIcon(QIcon('ui/image/ReThink.ico')) 
-        self.setStyleSheet('''border-image: url(ui/image/bg_img.jpg);''') # 设置自适应背景
+        self.setStyleSheet('''#Menu{border-image: url(ui/image/bg_img.jpg);}''') # 设置自适应背景
+        self.Logo.setStyleSheet('''border-image: url(ui/image/ReThink_Logo.png);''')
         self.Today.clicked.connect(self.op_today)
 
     def op_today(self):
-        self.w_today = today.Ui_Today_sub(self)
+        self.w_today = today.Ui_Today_sub()
         self.w_today.show()
-        self.hide()
-
-    def menu_show(self):
-        self.show()
+        self.close()
         
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

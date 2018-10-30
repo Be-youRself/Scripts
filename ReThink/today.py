@@ -10,4 +10,9 @@ class Ui_Today_sub(QtWidgets.QMainWindow, Ui_Today):
         self.setupUi(self) 
         self.setWindowIcon(QIcon('ui/image/ReThink.ico')) 
         self.setStyleSheet('''border-image: url(ui/image/bg_img.jpg);''') 
-        self.Back.clicked.connect(self.menu_show)    
+        self.Back.clicked.connect(self.op_menu)
+
+    def op_menu(self):
+        self.w_menu = menu.Ui_Menu_sub()
+        self.w_menu.show()
+        self.close()
