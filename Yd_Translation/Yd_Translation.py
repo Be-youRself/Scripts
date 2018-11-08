@@ -1,17 +1,17 @@
 # Filename: Yd_Translation.py
 # Coding: utf8
-#
+# Translate with Youdao Translation
 
-import http.client # python 2 对应 httplib
+import http.client # python 2 ----- httplib
 from hashlib import md5
-import urllib.request # python 2 对应 urllib
+import urllib.request # python 2 ----- urllib
 import random
-
 
 def en2chs(text):
     '''
-    :param : text (which need to be translated)
-    :return: json string as a result
+    English to Chinese
+    :param text: text that you want to translate.
+    :return: a json str includes translating information
     '''
     appKey = "应用ID"
     secretKey = "应用密钥"
@@ -25,7 +25,7 @@ def en2chs(text):
 
     sign = appKey + q + str(salt) + secretKey
     m1 = md5()
-    m1.update(sign.encode("utf8")) # python 3 中必须要编码后进行 update
+    m1.update(sign.encode("utf8")) # python 3 ----- update() needs to set encoding = ""
     sign = m1.hexdigest()
     myurl = myurl + '?appKey=' + appKey + '&q=' + urllib.request.quote(
         q) + '&from=' + fromLang + '&to=' + toLang + '&salt=' + str(salt) + '&sign=' + sign
@@ -37,17 +37,13 @@ def en2chs(text):
         # response是HTTPResponse对象
         response = httpClient.getresponse()
 
-        #print("type:" + type(response.read()))
-        print(response.read())
-        #result = str(response.read())
-        #print("type(str):" + type(result))
-        #print(result)
-
+        return(response.read())
     except Exception as e:
         print(e)
     finally:
         if httpClient:
             httpClient.close()
 
+
 if __name__ == "__main__":
-    en2chs("good")
+    en2chs("a")
