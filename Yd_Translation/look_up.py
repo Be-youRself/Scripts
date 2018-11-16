@@ -12,19 +12,59 @@ class Ui_Look_up_sub(QtWidgets.QMainWindow, Ui_Look_up): # 多态继承界面类
     def __init__(self, parent = None):
         super(Ui_Look_up_sub, self).__init__(parent = parent)
         self.setupUi(self)
-        self.read_word()
         self.setWindowIcon(QIcon('image/ReThink.ico'))
         self.setStyleSheet('''border-image: url(image/bg_img.jpg);''') # 设置自适应背景
+        self.update_repository()
+        self.read_word()
         self.Check.clicked.connect(self.look_up)
 
-    def read_word(self):
-        file_r = open("words.txt", "r", encoding="UTF-8")
-        self.words = file_r.read()
+    def update_repository(self):
+        file_r = open("word_list.txt", "r", encoding="UTF-8")
+        wordList = []
+        while True:
+            line = file_r.readline()
+            if len(line) == 0:
+                break
+            wordList.append(line)
         file_r.close()
+        # 末尾换行符
+        for i in range(0, len(wordList)):
+            # range 包括 begin 不包括 end
+            wordList[i].replace("\t", "")  # 处理制表符
+            wordList[i].replace("\n", "")  # 处理句末回车
+            wordList[i] = wordList[i].strip()  # 处理首尾空格
+        # 去除空元素
+        j = 0
+        for i in range(0, len(wordList)):
+            if wordList[j] == "":
+                del wordList[j]  # 删除空元素
+                j = j - 1
+            j = j + 1
+        if wordList != [] :
+            # 打开 repository.txt 文件 读入元组修改
+            file_rw = open("word_repository.txt", "w+", encoding="UTF-8")
+            repo_disc = file_r.write()
+            if repo_disc == "":
+                repo_disc = {}
+            for word in wordList:
+                if word not in repo_disc:
+                    repo_disc[word] = ""
+            file_rw.write(repo_disc)
+            file_rw.close()
+
+    def read_word(self):
+        self.words = "hi"
         self.Word.setText(self.words)
 
     def look_up(self):
-        self.Explanation.setText(translation.en2chs(self.words))
+        # 查找 repository
+        file_r = open("word_repository.txt", "r", encoding="UTF-8")
+        word_disc =
+        # repository 无解释则进行单词查询
+        explannation = translation.en2chs(self.words)
+
+        self.Explanation.setText(explannation)
+        file_r.close()
         
         
 if __name__ == '__main__':
