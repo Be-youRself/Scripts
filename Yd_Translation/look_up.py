@@ -1,5 +1,6 @@
 # Filename: look_up.py
 # Coding: utf8
+# 对于单词进行全部小写的处理
 
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIcon
@@ -42,29 +43,58 @@ class Ui_Look_up_sub(QtWidgets.QMainWindow, Ui_Look_up): # 多态继承界面类
             j = j + 1
         if wordList != [] :
             # 打开 repository.txt 文件 读入元组修改
-            file_rw = open("word_repository.txt", "w+", encoding="UTF-8")
-            repo_disc = file_r.write()
+            file_r = open("word_repository.txt", "r", encoding="UTF-8")
+            repo_disc = file_r.read()
+            file_r.close()
+            file_w = open("word_repository.txt", "w", encoding="UTF-8")
             if repo_disc == "":
                 repo_disc = {}
+            else:
+                repo_disc = eval(repo_disc)
             for word in wordList:
                 if word not in repo_disc:
                     repo_disc[word] = ""
-            file_rw.write(repo_disc)
-            file_rw.close()
+            file_w.write(str(repo_disc))
+            file_w.close()
 
     def read_word(self):
-        self.words = "hi"
+        self.words = "amplitude"
         self.Word.setText(self.words)
 
     def look_up(self):
         # 查找 repository
         file_r = open("word_repository.txt", "r", encoding="UTF-8")
-        word_disc =
-        # repository 无解释则进行单词查询
-        explannation = translation.en2chs(self.words)
-
-        self.Explanation.setText(explannation)
+        word_disc = file_r.read()
         file_r.close()
+        file_w = open("word_repository.txt", "w", encoding="UTF-8")
+        if word_disc == "":
+            word_disc = {}
+            explannation = translation.en2chs(self.words)
+            word_disc[self.words] = explannation
+            file_w.write(str(word_disc))
+            self.Explanation.setText(explannation)
+            file_w.close()
+        else:
+            word_disc = eval(word_disc)
+            if self.words not in word_disc:
+                explannation = translation.en2chs(self.words)
+                word_disc[self.words] = explannation
+                file_w.write(str(word_disc))
+                self.Explanation.setText(explannation)
+                file_w.close()
+            else:
+                if word_disc[self.words] != "":
+                    explannation = word_disc[self.words]
+                    file_w.write(str(word_disc))
+                    self.Explanation.setText(explannation)
+                    file_w.close()
+                else:
+                    # repository 无解释则进行单词查询
+                    explannation = translation.en2chs(self.words)
+                    word_disc[self.words] = explannation
+                    file_w.write(str(word_disc))
+                    self.Explanation.setText(explannation)
+                    file_w.close()
         
         
 if __name__ == '__main__':
