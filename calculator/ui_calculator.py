@@ -146,8 +146,7 @@ class Ui_MainWindow(object):
         self.output = QtWidgets.QTextBrowser(self.widget)
         self.output.setGeometry(QtCore.QRect(30, 0, 310, 90))
         self.output.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"font: 16pt \"宋体\";\n"
-"text-align:right;")
+"font: 16pt \"宋体\";")
         self.output.setObjectName("output")
         MainWindow.setCentralWidget(self.centralwidget)
 

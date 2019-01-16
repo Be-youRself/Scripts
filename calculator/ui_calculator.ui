@@ -410,8 +410,7 @@ background-color: rgb(221, 253, 255);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
-font: 16pt &quot;宋体&quot;;
-text-align:right;</string>
+font: 16pt &quot;宋体&quot;;</string>
      </property>
      <property name="html">
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
