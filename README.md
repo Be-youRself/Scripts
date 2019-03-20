@@ -1,2 +1,2 @@
 # Scripts
-Type some scripts that I am insterested with cute python.
+Write some small scripts that I am interested in with cute python.
