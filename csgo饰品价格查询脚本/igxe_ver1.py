@@ -1,4 +1,4 @@
-﻿# Filename: igxe_per1.py
+﻿# Filename: igxe_ver1.py
 # 获取爪子刀（★）（search）的最低价格
 
 import requests

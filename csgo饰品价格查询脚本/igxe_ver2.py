@@ -1,4 +1,4 @@
-# Filename: igxe_per2.py
+# Filename: igxe_ver2.py
 # 从want.txt文件获取想要搜索的饰品信息
 # 获取最低价格
 
