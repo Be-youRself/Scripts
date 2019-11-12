@@ -38,8 +38,8 @@ file_r.close()
 # 消除饰品名称末尾换行符
 for i in range(0, len(searchList)):
     # range 包括 begin 不包括 end
-    searchList[i].replace("\t","") # 处理制表符
-    searchList[i].replace("\n","") # 处理句末回车
+    searchList[i] = searchList[i].replace("\t","") # 处理制表符
+    searchList[i] = searchList[i].replace("\n","") # 处理句末回车
     searchList[i] = searchList[i].strip() # 处理首尾空格
 
 j = 0
