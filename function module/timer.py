@@ -1,4 +1,5 @@
 # Coding: utf8
+# 计算一天内的使用时间
 
 import datetime
 import time
@@ -19,4 +20,6 @@ if second < 0:
 if minute < 0:
     minute += 60
     hour -= 1
+if hour < 0:
+    hour += 24
 print("用时:{0}时{1}分{2}秒".format(hour, minute, second))

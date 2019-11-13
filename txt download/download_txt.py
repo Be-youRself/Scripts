@@ -61,6 +61,8 @@ while txt_url.find("html") != -1: # 判断是否到了末尾章节，即结束�
                     if minute < 0:
                         minute += 60
                         hour -= 1
+                    if hour < 0:
+                        hour += 24
                     print("下载用时: {0}时{1}分{2}秒".format(hour, minute, second))
                     # 保存下载记录
                     if os.path.exists("log.txt"):
@@ -118,6 +120,8 @@ if second < 0:
 if minute < 0:
     minute += 60
     hour -= 1
+if hour < 0:
+    hour += 24
 print("\n下载完毕！\n下载用时: {0}时{1}分{2}秒".format(hour, minute, second))
 
 # 保存下载记录
