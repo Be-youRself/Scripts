@@ -1,4 +1,5 @@
 # Coding: utf8
+# ver1 相对于 ver2 更适用于继续下载，全文下载稍有不便
 
 import requests
 import os
@@ -19,9 +20,9 @@ if not os.path.exists(txt_save_dir):
     os.mkdir(txt_save_dir)
 txt_file_address = txt_save_dir + "/" + txt_name + ".txt"
 if os.path.exists(txt_file_address):
-    txt_save_file = open(txt_file_address, "a") # 若已存在则是继续下载模式，否则新建下载
+    txt_save_file = open(txt_file_address, "a", encoding = "utf-8") # 若已存在则是继续下载模式，否则新建下载
 else:
-    txt_save_file = open(txt_file_address, "w") 
+    txt_save_file = open(txt_file_address, "w", encoding = "utf-8") 
 
 # 开始下载
 start_time = datetime.datetime.now() # 起始时间
@@ -66,9 +67,9 @@ while txt_url.find("html") != -1: # 判断是否到了末尾章节，即结束�
                     print("下载用时: {0}时{1}分{2}秒".format(hour, minute, second))
                     # 保存下载记录
                     if os.path.exists("log.txt"):
-                        log_file = open("log.txt", "a")
+                        log_file = open("log.txt", "a", encoding = "utf-8")
                     else:
-                        log_file = open("log.txt", "w")
+                        log_file = open("log.txt", "w", encoding = "utf-8")
                     # 打印日期时间
                     now_time = time.strftime("%Y.%m.%d %H:%M:%S")
                     log_file.write(now_time + ":\n")
@@ -126,9 +127,9 @@ print("\n下载完毕！\n下载用时: {0}时{1}分{2}秒".format(hour, minute,
 
 # 保存下载记录
 if os.path.exists("log.txt"):
-    log_file = open("log.txt", "a")
+    log_file = open("log.txt", "a", encoding = "utf-8")
 else:
-    log_file = open("log.txt", "w")
+    log_file = open("log.txt", "w", encoding = "utf-8")
 # 打印日期时间
 now_time = time.strftime("%Y.%m.%d %H:%M:%S")
 log_file.write(now_time + ":\n")

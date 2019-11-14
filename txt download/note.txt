@@ -1,3 +1,4 @@
+download_txt_ver1.py
 脚本简介：
 下载无极小说网(https://wujixiaoshuo.com)上的小说
 
@@ -18,3 +19,33 @@ requests库使用(获得源代码)
 format格式化输出方法
 异常处理
 进度条
+编码格式问题，打开文件、读取网页等都应该统一制定一种编码格式(utf-8)
+
+
+问题记录：
+1、连接超时，出现异常，下载中断并退出。(已解决)
+解决方法：
+    对于 requests.get() 进行异常处理
+
+2、编码解码出错，出现异常，中断退出。(已解决)
+具体如下：
+    File "C:\Users\Federico\Desktop\下载小说\download_txt.py", line 98, in <module>
+        txt_save_file.write(txt_title + "\n\n" + txt_body)
+    UnicodeEncodeError: 'gbk' codec can't encode character '\ue382' in position 1058: illegal multibyte sequence
+出错场景：
+    鬼吹灯 第九十章
+    https://wujixiaoshuo.com/52_52740/23177738.html(第一章地址)
+解决方法：
+    打开文件时，应该指定文件为utf-8编码格式(encoding = "utf-8")
+
+_________________________________________________________________________________________________________________
+
+
+download_txt_ver2.py
+更新情况：
+1、更适合全文下载
+2、增加正确的下载进度条
+
+
+使用方法：
+1、相对于 ver1, 只需要输入小说首页网址即可完成全文下载
