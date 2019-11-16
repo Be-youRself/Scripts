@@ -11,6 +11,9 @@ import sys
 print("输入小说首页网址：")
 txt_homepage = input() # 小说起始网址
 
+# 提取小说主站地址  
+txt_domain = txt_homepage[:txt_homepage[:-1].rfind("/")] # 提取出的小说网站地址 # 用户复制网址时，不管是否复制了最后一个"/"都适用
+
 # 处理首页 获得小说名和首章url 这一段的变量会被后续程序重复使用
 ## 获取源代码
 print("\n正在获取下载信息...")
@@ -49,7 +52,7 @@ mission_num = len(txt_source.split(txt_flag4)) - 1 # 获取任务数
 ## 获取首章url
 txt_flag5 = '">'
 txt_source = txt_source[txt_source.find(txt_flag4):]
-txt_url = "https://wujixiaoshuo.com" + txt_source[len(txt_flag4):txt_source.find(txt_flag5)].strip() # 获取首章url
+txt_url = txt_domain + txt_source[len(txt_flag4):txt_source.find(txt_flag5)].strip() # 获取首章url 
 
 # 创建文件用于存储
 txt_save_dir = "txt_save" # 文件夹名
@@ -122,27 +125,28 @@ for i in range(mission_num): # 爬取固定数量的章节
 
     # 处理小说源代码
     ## 抓标题
-    txt_flag1 = '&gt;'
+    txt_flag1 = '</a> &gt;'
     txt_flag2 = '</div>'
     txt_source = txt_source[txt_source.rfind(txt_flag1):]
     txt_title = txt_source[len(txt_flag1):txt_source.find(txt_flag2)].strip() # 标题
     ## 抓正文
-    txt_flag3 = 'https://wujixiaoshuo.com/最快更新！无广告！<br/><br/>'
+    txt_flag3 = '最快更新！无广告！<br/><br/>' 
     txt_source = txt_source[txt_source.find(txt_flag3):]
-    txt_flag4 = '&nbsp;&nbsp;&nbsp;&nbsp;'
+    txt_flag4 = '&nbsp;&nbsp;&nbsp;&nbsp;'    
     txt_flag5 = '<div align="center">'
     txt_body = txt_source[txt_source.find(txt_flag4):txt_source.find(txt_flag5)] + "\n"
     txt_source = txt_source[txt_source.find(txt_flag5):]
     ## 处理正文
     txt_body = txt_body.replace("&nbsp;", " ")
     txt_body = txt_body.replace("<br />", "\n")
+    txt_body = txt_body.replace("&gt;", ">")
     ## 存储该章节
     txt_save_file.write(txt_title + "\n\n" + txt_body)
     ## 抓下一章url
     txt_flag6 = '" target="_top" class="next">下一章</a>'
     txt_source = txt_source[0:txt_source.find(txt_flag6)]
     txt_flag7 = '<a href="'
-    txt_url = "https://wujixiaoshuo.com" + txt_source[txt_source.rfind(txt_flag7) + len(txt_flag7):]
+    txt_url = txt_domain + txt_source[txt_source.rfind(txt_flag7) + len(txt_flag7):] 
     ## 进度条刷新
     sys.stdout.write('   \r')
     sys.stdout.flush()
