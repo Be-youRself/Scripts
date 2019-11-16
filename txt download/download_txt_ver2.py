@@ -68,9 +68,7 @@ else:
 start_time = datetime.datetime.now() # 起始时间
 ## 进度条实现
 print("\n开始下载：")
-sys.stdout.write('   \r')
-sys.stdout.flush()
-sys.stdout.write("0%|                                                  | {0}/{1}".format(0, mission_num))
+sys.stdout.write("  0%|                                                  | {0}/{1}".format(0, mission_num))
 sys.stdout.flush()
 for i in range(mission_num): # 爬取固定数量的章节
     # 爬取小说源代码
@@ -151,6 +149,12 @@ for i in range(mission_num): # 爬取固定数量的章节
     sys.stdout.write('   \r')
     sys.stdout.flush()
     percent_num = (i + 1) * 100 // mission_num
+    if percent_num < 10:
+        sys.stdout.write("  ")
+    elif percent_num < 100:
+        sys.stdout.write(" ")
+    else:
+        pass
     sys.stdout.write('{0}%|'.format(percent_num))
     for j in range(percent_num // 4):
         sys.stdout.write("█")

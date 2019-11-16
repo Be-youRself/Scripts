@@ -6,7 +6,7 @@ import os
 import time 
 import datetime
 import sys
-from progress.spinner import Spinner
+
 
 print("输入小说名：")
 txt_name = input() # 保存文件名
@@ -29,7 +29,8 @@ else:
 # 开始下载
 start_time = datetime.datetime.now() # 起始时间
 print()
-spinner = Spinner('正在奋力下载中') # 进度条
+label = '正在奋力下载中' # 加载中
+mission_finished = 0
 while txt_url.find("html") != -1: # 判断是否到了末尾章节，即结束标志
     # 爬取小说源代码
     try:
@@ -105,7 +106,20 @@ while txt_url.find("html") != -1: # 判断是否到了末尾章节，即结束�
     txt_source = txt_source[0:txt_source.find(txt_flag6)]
     txt_flag7 = '<a href="'
     txt_url = txt_domain + txt_source[txt_source.rfind(txt_flag7) + len(txt_flag7):]
-    spinner.next()
+    ## 刷新加载标记
+    sys.stdout.write('   \r')
+    sys.stdout.flush()
+    sys.stdout.write(label)
+    if mission_finished % 4 == 0:
+        sys.stdout.write(" / ")
+    elif mission_finished % 4 == 1:
+        sys.stdout.write(" - ")
+    elif mission_finished % 4 == 2:
+        sys.stdout.write(" \\ ")
+    else:
+        sys.stdout.write(" | ")
+    sys.stdout.flush()
+    mission_finished += 1
 
 # 完成存储
 txt_save_file.write("<全书完>")
