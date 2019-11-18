@@ -50,7 +50,7 @@ t.close()
 '''
 
 
-
+'''
 # 自己实现进度条(原理)
 # n 总任务数量
 n = 24
@@ -74,7 +74,7 @@ for i in range(n):
         sys.stdout.write("  ")
     sys.stdout.write("| {0}/{1}".format(i + 1, n))
     sys.stdout.flush()
-
+'''
 
 
 '''
@@ -101,3 +101,50 @@ while i < n:
     sys.stdout.flush()
     i += 1
 '''
+
+
+import threading
+
+end_flag = 1
+def loading_flag(label):
+    # 提供一个终止标记 end_flag, end_flag = 0 则终止
+    i = 0
+    sys.stdout.write(" | ")
+    sys.stdout.flush()
+    while end_flag:
+        time.sleep(0.1)
+        sys.stdout.write('   \r')
+        sys.stdout.flush()
+        sys.stdout.write(label)
+        if i % 4 == 0:
+            sys.stdout.write(" / ")
+        elif i % 4 == 1:
+            sys.stdout.write(" - ")
+        elif i % 4 == 2:
+            sys.stdout.write(" \\ ")
+        else:
+            sys.stdout.write(" | ")
+        sys.stdout.flush()
+        i += 1
+    sys.stdout.write('   \r') 
+    sys.stdout.flush()
+    for i in range(len(label) + 1):
+        print("  ", end="") # 给予足够长度来覆盖前文
+    print()
+
+
+# 准备
+label = "准备中"
+loading_thread = threading.Thread(target = loading_flag, args = (label,))
+print("start.")
+loading_thread.start()
+# 执行任务
+n = 3
+i = 0
+while i < n:
+    time.sleep(1)
+    i += 1
+# 终止
+end_flag = 0
+time.sleep(0.5) # 防止出现同步异常
+print("end.")
