@@ -19,3 +19,13 @@ def settext(text):
 
 settext("123")
 print(gettext())
+
+
+'''
+也可以使用 pyperclip 库
+
+import pyperclip
+
+pyperclip.copy("想输入到剪切板的内容")  # 输入
+pyperclip.paste() # 粘贴
+'''

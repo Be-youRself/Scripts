@@ -1,0 +1,7 @@
+timer.py           计时器
+loading.py         加载功能
+startup_screen.py  pyqt5程序启动画面
+clipboard.py       剪切板相关操作
+address.py         文件地址选择
+key_random.py      随即密码生成
+mouse_keyboard.py  鼠标键盘事件(pynput)
