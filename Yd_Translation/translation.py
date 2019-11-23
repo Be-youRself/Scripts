@@ -32,11 +32,14 @@ def en2chs(text):
         if text == "":
             return("Input is illegal!") # actually it is not needed
         else:
-            result_json = Yd_Translation.en2chs(text)
-            result_dict = json.loads(result_json)
-            sen_list = result_dict["translation"]
-            sen_tran = "。".join(sen_list)
-            return (sen_tran)
+            try:
+                result_json = Yd_Translation.en2chs(text)
+                result_dict = json.loads(result_json)
+                sen_list = result_dict["translation"]
+                sen_tran = "。".join(sen_list)
+                return (sen_tran)
+            except Exception:
+                return("Can't translate this sentence!")
 
 
 if __name__ == "__main__":
