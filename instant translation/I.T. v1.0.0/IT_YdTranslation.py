@@ -1,21 +1,18 @@
-# Filename: Yd_Translation.py
 # Coding: utf8
-# Translate with Youdao Translation
+# 有道服务模块，从配置文件中获取账号密码
 
-import http.client # python 2 ----- httplib
+import http.client  # python 2 ----- httplib
 from hashlib import md5
-import urllib.request # python 2 ----- urllib
+import urllib.request  # python 2 ----- urllib
 import random
 
-def en2chs(text):
+
+def en2chs(text, appKey, secretKey):
     '''
     English to Chinese
     :param text: text that you want to translate.
-    :return: a json str includes translating information
+    :return: a json str includes translating informations
     '''
-    appKey = "应用ID"
-    secretKey = "应用密钥"
-
     httpClient = None
     myurl = '/api'
     q = text
@@ -25,7 +22,7 @@ def en2chs(text):
 
     sign = appKey + q + str(salt) + secretKey
     m1 = md5()
-    m1.update(sign.encode("utf8")) # python 3 ----- update() needs to set encoding = ""
+    m1.update(sign.encode("utf8"))  # python 3 ----- update() needs to set encoding = ""
     sign = m1.hexdigest()
     myurl = myurl + '?appKey=' + appKey + '&q=' + urllib.request.quote(
         q) + '&from=' + fromLang + '&to=' + toLang + '&salt=' + str(salt) + '&sign=' + sign
@@ -37,10 +34,9 @@ def en2chs(text):
         # response是HTTPResponse对象
         response = httpClient.getresponse()
 
-        return(response.read())
+        return (response.read())
     except Exception as e:
-        print(e)
+        return (e)
     finally:
         if httpClient:
             httpClient.close()
-

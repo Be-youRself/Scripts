@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Translation_box</class>
+ <widget class="QMainWindow" name="Translation_box">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>734</width>
+    <height>45</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>734</width>
+    <height>45</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>734</width>
+    <height>45</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>I.T.</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="Show_box">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>734</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:10px 15px;
+color: rgb(255, 255, 255);
+background-color: qlineargradient(spread:repeat, x1:0.505682, y1:0, x2:0.505682, y2:1, stop:0.335227 rgba(21, 0, 142, 255), stop:1 rgba(63, 81, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
